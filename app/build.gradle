@@ -15,6 +15,14 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     buildTypes {
         release {
@@ -26,6 +34,12 @@ android {
 }
 
 dependencies {
+    def retrofit_Version = "2.7.2"
+    def viewmodel_Version = "2.2.0"
+    def rxjava_android_Version = "3.0.0"
+    def okhttp__Version = "4.4.0"
+    def rx_retrofit_adapter_version = "3.0.0"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -34,4 +48,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_Version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_Version"
+
+    //viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_Version"
+
+    //rxjava android
+    implementation "io.reactivex.rxjava3:rxandroid:$rxjava_android_Version"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.2"
+
+    implementation "com.squareup.okhttp3:okhttp:$okhttp__Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp__Version"
 }
