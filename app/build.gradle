@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -39,6 +40,7 @@ dependencies {
     def rxjava_android_Version = "3.0.0"
     def okhttp__Version = "4.4.0"
     def rx_retrofit_adapter_version = "3.0.0"
+    def room_version = "2.2.5"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -62,4 +64,9 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:$okhttp__Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp__Version"
+
+    //room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }
