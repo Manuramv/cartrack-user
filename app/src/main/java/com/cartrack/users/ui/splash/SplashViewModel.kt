@@ -1,4 +1,4 @@
-package com.cartrack.users.ui
+package com.cartrack.users.ui.splash
 
 import android.util.Log
 import androidx.lifecycle.*

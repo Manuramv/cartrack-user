@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.cartrack.users.data.repository.LoginRepository
 import com.cartrack.users.data.repository.LoginRepositoryFactory
-import com.cartrack.users.ui.SplashViewModel
+import com.cartrack.users.ui.splash.SplashViewModel
 import com.cartrack.users.ui.ViewModelFactory
 import com.cartrack.users.utils.Resource
 
@@ -19,7 +18,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        splashViewModel = ViewModelProvider(this, ViewModelFactory(LoginRepositoryFactory.createLoginRepository(application)))
+        splashViewModel = ViewModelProvider(this, ViewModelFactory(LoginRepositoryFactory.createLoginRepository(application),SplashViewModel::class.java ))
             .get(SplashViewModel::class.java)
 
         splashViewModel.user.observe(this, Observer {
