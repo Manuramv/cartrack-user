@@ -23,16 +23,8 @@ class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
         loginRepository.testMethod()
         val user = User(1,"user1","password@18")
         val user2 = User(18,"user2","password@123")
-        viewModelScope.launch {
-            try {
-                _insertObserver = loginRepository?.insertNewUser(user)!!
-                //loginRepository.insertTask(user2)
-            } catch (e : Exception){
-
-            }
-
-        }
-
+        loginRepository?.insertNewUser(user)!!
+        _insertObserver = loginRepository?.insertNewUser(user2)!!
 
     }
 
