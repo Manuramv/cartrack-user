@@ -17,7 +17,7 @@ abstract class AppDataBase :RoomDatabase() {
             return instance ?: synchronized(this) { instance ?: buildDatabase(ctx).also { instance = it } }
         }
 
-        fun buildDatabase(ctx: Context): AppDataBase {
+        private fun buildDatabase(ctx: Context): AppDataBase {
             return Room.databaseBuilder(ctx,AppDataBase::class.java,"users").build()
 
         }
