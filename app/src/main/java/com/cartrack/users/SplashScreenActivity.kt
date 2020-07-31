@@ -22,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
         splashViewModel = ViewModelProvider(this, ViewModelFactory(LoginRepositoryFactory.createLoginRepository(application)))
             .get(SplashViewModel::class.java)
 
-        /*splashViewModel.user.observe(this, Observer {
+        splashViewModel.user.observe(this, Observer {
             when(it.status){
                 Resource.Status.SUCCESS ->{
                     Log.d(TAG,"db query success::"+it.data)
@@ -31,9 +31,29 @@ class SplashScreenActivity : AppCompatActivity() {
                 Resource.Status.ERROR ->{
                     Log.d(TAG,"db query error::"+it.message)
                 }
+                Resource.Status.LOADING ->{
+                    Log.d(TAG,"db query Loading::"+it.message)
+                }
 
             }
-        })*/
+        })
+
+        splashViewModel.uallUsers.observe(this, Observer {
+            when(it.status){
+                Resource.Status.SUCCESS ->{
+                    Log.d(TAG,"db query uallUsers success::"+it.data)
+                }
+
+                Resource.Status.ERROR ->{
+                    Log.d(TAG,"db query uallUsers error::"+it.message)
+                }
+                Resource.Status.LOADING ->{
+                    Log.d(TAG,"db query uallUsers Loading::"+it.message)
+                }
+
+            }
+        })
+
 
     }
 }

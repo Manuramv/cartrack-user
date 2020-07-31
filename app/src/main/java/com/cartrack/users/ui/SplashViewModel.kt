@@ -1,13 +1,11 @@
 package com.cartrack.users.ui
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.repository.LoginRepository
 import com.cartrack.users.utils.Resource
+import kotlinx.coroutines.launch
 
 class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
     private val TAG = SplashViewModel::class.java.canonicalName
@@ -21,14 +19,26 @@ class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
     init {
         Log.d(TAG,"in viewmodel init::"+loginRepository)
         loginRepository.testMethod()
+        val user = User(1,"user1","password@18")
+        val user2 = User(18,"user2","password@123")
+        viewModelScope.launch {
+            loginRepository.insert(user)
+            loginRepository.insert(user2)
+        }
+
+
     }
 
 
 
 
-    /*private val _user = loginRepository.getUser(_userName.value!!,_pwd.value!!)
+  //  private val _user = loginRepository.getUser("_userName.value!!","_pwd.value!!")
+    private val _user = loginRepository.getUser("manuram v","sreemanu")
 
-    val user: LiveData<Resource<User>> = _user!!*/
+    val user: LiveData<Resource<User>> = _user!!
+
+    private val _allUsers = loginRepository.getAllUsers()
+    val uallUsers: LiveData<Resource<List<User>>> = _allUsers!!
 
 
 }
