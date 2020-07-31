@@ -1,5 +1,6 @@
 package com.cartrack.users.ui.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.cartrack.users.R
 import com.cartrack.users.data.repository.LoginRepositoryFactory
 import com.cartrack.users.ui.ViewModelFactory
+import com.cartrack.users.ui.home.HomeActivity
 import com.cartrack.users.ui.splash.SplashViewModel
 import com.cartrack.users.utils.Resource
 import kotlinx.android.synthetic.main.activity_login.*
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
             loginViewModel.performLogin(etUserName.text.toString(), etPassword.text.toString())?.observe(this, Observer {
                 when(it.status){
                     Resource.Status.SUCCESS ->{
+                        navigateToHomeScreen()
                         Log.d(TAG,"Login success::"+it.data)
                     }
 
@@ -42,5 +45,10 @@ class LoginActivity : AppCompatActivity() {
                 }
                 })
         })
+    }
+
+
+    private fun navigateToHomeScreen(){
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 }
