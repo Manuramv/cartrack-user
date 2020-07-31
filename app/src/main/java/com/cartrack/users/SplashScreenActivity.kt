@@ -1,5 +1,6 @@
 package com.cartrack.users
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.cartrack.users.data.repository.LoginRepositoryFactory
 import com.cartrack.users.ui.splash.SplashViewModel
 import com.cartrack.users.ui.ViewModelFactory
+import com.cartrack.users.ui.login.LoginActivity
 import com.cartrack.users.utils.Resource
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -54,5 +56,19 @@ class SplashScreenActivity : AppCompatActivity() {
         })
 
 
+        splashViewModel._insertObserver?.observe(this, Observer {
+            when(it){
+                true -> navigateToLoginScreen()
+                false -> "show error"
+            }
+
+
+        })
+
+
+    }
+
+    private fun navigateToLoginScreen(){
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 }

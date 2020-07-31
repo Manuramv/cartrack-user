@@ -6,11 +6,13 @@ import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.repository.LoginRepository
 import com.cartrack.users.utils.Resource
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
     private val TAG = SplashViewModel::class.java.canonicalName
     private val _userName = MutableLiveData<String>()
     private val _pwd = MutableLiveData<String>()
+     lateinit var _insertObserver :LiveData<Boolean>
 
     fun performLogin(userName: String, pwd:String){
         _userName.value = userName
@@ -22,8 +24,13 @@ class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
         val user = User(1,"user1","password@18")
         val user2 = User(18,"user2","password@123")
         viewModelScope.launch {
-            loginRepository.insert(user)
-            loginRepository.insert(user2)
+            try {
+                _insertObserver = loginRepository?.insertNewUser(user)!!
+                //loginRepository.insertTask(user2)
+            } catch (e : Exception){
+
+            }
+
         }
 
 
@@ -32,13 +39,12 @@ class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
 
 
 
-  //  private val _user = loginRepository.getUser("_userName.value!!","_pwd.value!!")
+   // private val _user = loginRepository.getUser("_userName.value!!","_pwd.value!!")
     private val _user = loginRepository.getUser("manuram v","sreemanu")
 
     val user: LiveData<Resource<User>> = _user!!
 
     private val _allUsers = loginRepository.getAllUsers()
     val uallUsers: LiveData<Resource<List<User>>> = _allUsers!!
-
 
 }

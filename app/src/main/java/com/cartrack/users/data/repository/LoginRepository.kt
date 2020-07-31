@@ -4,14 +4,17 @@ import android.app.Application
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.local.AppDataBase
 import com.cartrack.users.data.local.LoginDao
 import com.cartrack.users.utils.Resource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.invoke
+import kotlinx.coroutines.*
+import okhttp3.internal.concurrent.Task
+import java.lang.Exception
+import androidx.lifecycle.liveData as liveData1
 
 
 class LoginRepository (application: Application) {
@@ -22,10 +25,8 @@ class LoginRepository (application: Application) {
         mLoginDao = db.loginDao()
     }
 
+    fun insertNewUser(user: User) = insertTask(user)
 
-    suspend fun insert(user: User) {
-        insertNewUserToDatabase(user)
-    }
 
 
     ///function to get the user..
@@ -35,7 +36,7 @@ class LoginRepository (application: Application) {
 
 
     private fun <T> getData(databaseQuery: () -> LiveData<T>?): LiveData<Resource<T>>? {
-        return liveData(Dispatchers.IO) {
+        return liveData1(Dispatchers.IO) {
             emit(Resource.loading())
             val source = databaseQuery.invoke()?.map {
                 if(it!=null)
@@ -54,11 +55,44 @@ class LoginRepository (application: Application) {
     }
 */
 
-    suspend fun insertNewUserToDatabase(user: User){
-        Dispatchers.IO({
-            mLoginDao?.insert(user)
-        })
+    suspend fun<T> insertNewUserToDatabase(databaseQuery: () -> LiveData<T>?):LiveData<Resource<T>>?{
+        return liveData1(Dispatchers.IO) {
+            emit(Resource.loading())
+            val source = databaseQuery.invoke()?.map {
+                if(it!=null)
+                    Resource.success(it)
+                else
+                    Resource.error("We couldn't find you in our database. Please check your credentials...")
+            }
+            emitSource(source!!)
+        }
     }
+
+
+    fun  insertTask(user: User): MutableLiveData<Boolean> {
+        val liveData = MutableLiveData<Boolean>()
+        var insertSuccess = false;
+        GlobalScope.launch(Dispatchers.IO) {
+            val it = mLoginDao?.insert(user)
+            Log.d("tag","inserted row=="+it)
+            if(it!=null){
+                Log.d("tag","inserted row== true=="+it)
+                insertSuccess = true;
+                GlobalScope.launch (Dispatchers.Main){
+                    liveData.value = insertSuccess
+                    Log.d("tag","inserted row== liveData.value =="+liveData.value )
+                }
+            } else {
+                Log.d("tag","inserted row== false=="+it)
+                insertSuccess = false
+            }
+        }
+
+
+
+        return liveData
+    }
+
 
     fun testMethod(){
         Log.d("tag","called test method")

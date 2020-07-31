@@ -6,13 +6,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.cartrack.users.data.entities.User
+import io.reactivex.rxjava3.core.Completable
 
 //Quries will go here
 @Dao
 interface LoginDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(user : User)
+    fun insert(user : User): Long
 
     @Query("SELECT * FROM USERTABLE WHERE userName =:userName and password= :password")
     fun getUser(userName: String, password:String ) :LiveData<User>
