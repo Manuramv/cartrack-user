@@ -21,7 +21,7 @@ class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
     init {
         Log.d(TAG,"in viewmodel init::"+loginRepository)
         loginRepository.testMethod()
-        val user = User(1,"user1","password@18")
+        val user = User(1,"manu@gmail.com","password@18")
         val user2 = User(18,"user2","password@123")
         val user3 = User(18,"manu","sreemanu")
         loginRepository?.insertNewUser(user)!!
