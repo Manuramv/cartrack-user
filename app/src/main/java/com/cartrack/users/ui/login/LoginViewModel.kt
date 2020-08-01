@@ -7,6 +7,7 @@ import androidx.lifecycle.*
 import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.repository.LoginRepository
 import com.cartrack.users.utils.Resource
+import com.cartrack.users.utils.ValidationUtils.isFormValid
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,6 +17,8 @@ import kotlinx.coroutines.withContext
 class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() {
     var emailAddress= MutableLiveData<String>()
     var password = MutableLiveData<String>()
+    var enableLoginButton = MutableLiveData<Boolean>()
+
     private val _id = MutableLiveData<Int>()
    // private val _user = loginRepository.getUser("user1", "password@18")
     private val _user = _id.switchMap { id ->
@@ -34,5 +37,18 @@ class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() 
        _id.value = _id.value?.plus(1);
    }
 
+    val valid = MediatorLiveData<Boolean>().apply {
+        var emailValid = false
+        var pwdValid = false
+        addSource(emailAddress) {
+            emailValid = isFormValid(it)
+            value = emailValid && pwdValid
 
+        }
+        addSource(password) {
+            pwdValid = isFormValid(it)
+            value = emailValid && pwdValid
+        }
+        value = emailValid && pwdValid
+    }
 }

@@ -27,6 +27,8 @@
         android:layout_height="wrap_content"
         app:errorMsg='@{"Cannot be empty"}'
         app:validation='@{ValidationRule.EMAIL_RULE}'
+
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +49,6 @@
         android:layout_height="wrap_content"
         app:errorMsg='@{"Cannot be empty"}'
         app:validation='@{ValidationRule.PASSWORD_RULE}'
-
         app:layout_constraintTop_toBottomOf="@+id/etUserName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:onClick="@{ () ->  viewModel.performLogin()}"
+        android:enabled="@{viewModel.valid}"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
