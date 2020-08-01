@@ -17,14 +17,4 @@ class ViewModelFactory<T> (private val loginRepository: LoginRepository, private
                 else -> throw IllegalArgumentException("Unknown viewModel class $modelClass")
             }
         } as T
-
-
-   /* companion object {
-        private var instance : ViewModelFactory? = null
-        fun getInstance() =
-            instance ?: synchronized(ViewModelFactory::class.java){
-                instance ?: ViewModelFactory().also { instance = it }
-            }
-    }*/
-
 }

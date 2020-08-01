@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.cartrack.users.R
+import com.cartrack.users.data.repository.UserRepository
 import com.cartrack.users.databinding.FragmentUserListBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,7 +30,8 @@ class UserListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentUserListBinding.inflate(inflater, container, false)
-        userListViewModel = ViewModelProvider(this).get(UserListViewModel::class.java)
+        userListViewModel = ViewModelProvider(this, ViewModelFactory(UserRepository(), UserListViewModel::class.java ))
+            .get(UserListViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = userListViewModel
         return binding.root
@@ -37,6 +39,7 @@ class UserListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userListViewModel.abc()
     }
 
 
