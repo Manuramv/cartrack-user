@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitApiClient private constructor(){
-    private val API_BASE_URL = "https://jsonplaceholder/"
+    private val API_BASE_URL = "https://jsonplaceholder.typicode.com/"
     val retrofit: Retrofit
 
     init {
