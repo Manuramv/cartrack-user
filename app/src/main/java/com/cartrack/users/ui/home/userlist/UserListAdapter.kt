@@ -11,7 +11,7 @@ import com.cartrack.users.databinding.UserItemBinding
 class UserListAdapter(private val listener: UserItemListner) : RecyclerView.Adapter<UserViewHolder>() {
 
     interface UserItemListner {
-        fun onClickedUser(characterId: Int)
+        fun onClickedUser(userId: Int)
     }
 
     private val items = ArrayList<UserListResponseItem>()
@@ -35,7 +35,7 @@ class UserListAdapter(private val listener: UserItemListner) : RecyclerView.Adap
 class UserViewHolder(private val itemBinding: UserItemBinding, private val listener: UserListAdapter.UserItemListner) : RecyclerView.ViewHolder(itemBinding.root),
     View.OnClickListener {
 
-    private lateinit var character: Character
+    private lateinit var user: UserListResponseItem
 
     init {
         itemBinding.root.setOnClickListener(this)
@@ -43,20 +43,12 @@ class UserViewHolder(private val itemBinding: UserItemBinding, private val liste
 
     @SuppressLint("SetTextI18n")
     fun bind(item: UserListResponseItem) {
+        this.user = item
         itemBinding.adapterdata = item
-        /*binding.adapterdata = values[position]
-        return binding.root
-        this.character = item*/
-       /* itemBinding.name.text = item.name
-        itemBinding.speciesAndStatus.text = """${item.species} - ${item.status}"""
-        Glide.with(itemBinding.root)
-            .load(item.image)
-            .transform(CircleCrop())
-            .into(itemBinding.image)*/
     }
 
     override fun onClick(v: View?) {
-        //listener.onClickedCharacter(character.id)
+        listener.onClickedUser(user.id)
     }
 }
 
