@@ -1,18 +1,11 @@
 package com.cartrack.users.ui.login
 
-import android.text.TextUtils
-import android.util.Log
-import android.util.Patterns
 import androidx.lifecycle.*
 import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.repository.LoginRepository
 import com.cartrack.users.utils.Resource
-import com.cartrack.users.utils.ValidationUtils.isFormValid
-import io.reactivex.rxjava3.core.Single
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.cartrack.users.utils.ValidationUtils.isEmailValid
+import com.cartrack.users.utils.ValidationUtils.isPwdValid
 
 class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() {
     var emailAddress= MutableLiveData<String>()
@@ -41,12 +34,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() 
         var emailValid = false
         var pwdValid = false
         addSource(emailAddress) {
-            emailValid = isFormValid(it)
+            emailValid = isEmailValid(it)
             value = emailValid && pwdValid
 
         }
         addSource(password) {
-            pwdValid = isFormValid(it)
+            pwdValid = isPwdValid(it)
             value = emailValid && pwdValid
         }
         value = emailValid && pwdValid

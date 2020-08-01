@@ -13,8 +13,8 @@ import com.google.android.material.textfield.TextInputLayout
 object TextInputBindingAdapter {
 
     @JvmStatic
-    @BindingAdapter("app:validation", "app:errorMsg" ,"app:isValid")
-    fun setErrorEnable(textInputLayout: TextInputLayout?, stringRule: StringRule, errorMsg: String?,isValid:Boolean) {
+    @BindingAdapter("app:validation", "app:errorMsg" )
+    fun setErrorEnable(textInputLayout: TextInputLayout?, stringRule: StringRule, errorMsg: String?) {
 
         textInputLayout?.editText?.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
