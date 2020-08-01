@@ -23,7 +23,9 @@ class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
         loginRepository.testMethod()
         val user = User(1,"user1","password@18")
         val user2 = User(18,"user2","password@123")
+        val user3 = User(18,"manu","sreemanu")
         loginRepository?.insertNewUser(user)!!
+        loginRepository?.insertNewUser(user3)!!
         _insertObserver = loginRepository?.insertNewUser(user2)!!
 
     }

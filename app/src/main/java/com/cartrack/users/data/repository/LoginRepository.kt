@@ -38,13 +38,17 @@ class LoginRepository (application: Application) {
     private fun <T> getData(databaseQuery: () -> LiveData<T>?): LiveData<Resource<T>>? {
         return liveData1(Dispatchers.IO) {
             emit(Resource.loading())
-            val source = databaseQuery.invoke()?.map {
-                if(it!=null)
-                Resource.success(it)
-                else
-                    Resource.error("We couldn't find you in our database. Please check your credentials...")
+            try {
+                val source = databaseQuery.invoke()?.map {
+                    if (it != null)
+                        Resource.success(it)
+                    else
+                        Resource.error("We couldn't find you in our database. Please check your credentials...")
+                }
+                emitSource(source!!)
+            } catch (e:Exception){
+               // emitSource(Resource.error("hii"))
             }
-            emitSource(source!!)
         }
     }
 

@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_label"
-            android:text="@={viewModel.emailAddress}" />
+            android:text="@={viewModel.password}" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -71,7 +71,9 @@
 
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="@{ () ->  viewModel.performLogin()}"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

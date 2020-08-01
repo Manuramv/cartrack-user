@@ -36,9 +36,7 @@ class LoginActivity : AppCompatActivity() {
         binding.viewModel = loginViewModel
 
 
-        btnLogin.setOnClickListener({
-            etUserName.error = "enter text"
-            loginViewModel.performLogin(etUserNameval.text.toString(), etPwdval.text.toString())?.observe(this, Observer {
+        loginViewModel.user?.observe(this, Observer {
                 when(it.status){
                     Resource.Status.SUCCESS ->{
                         navigateToHomeScreen()
@@ -53,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                 }
-                })
         })
     }
 
