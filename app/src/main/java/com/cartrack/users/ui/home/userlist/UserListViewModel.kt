@@ -17,13 +17,13 @@ class UserListViewModel(private val userRepository: UserRepository) : ViewModel(
 
     fun getUsersList(){
       //  remoteDataSource.getUsersList()
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             Log.d("UserListViewModel","response=="+userRepository.getUser())
             userRepository.getUser().let {
                 when(it.status){
-                    Resource.Status.NETWORK_CALL_SUCCESS ->{
+                    Resource.Status.SUCCESS ->{
                         Log.d("UserListViewModel","response== api success")
-                        viewModelScope.launch { usersData.value = it.data }
+                         usersData.value = it.data
                     }
                     Resource.Status.ERROR ->{
                         Log.d("UserListViewModel","response== api error"+it)
