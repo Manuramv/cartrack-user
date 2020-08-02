@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.cartrack.users.R
 import com.cartrack.users.data.model.UserListResponseItem
 import com.cartrack.users.databinding.FragmentUserDetailsBinding
@@ -41,9 +42,20 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this)
         mapView.onResume();
+        setupObserver()
 
         return binding.root
 
+    }
+
+    private fun setupObserver() {
+        userDetailsViewModel.mMapLatLng.observe(viewLifecycleOwner, Observer {
+            val sydney = LatLng(1.4173, 103.8330)
+            val icon = BitmapDescriptorFactory.fromResource(R.drawable.marker)
+            var markerOptions = MarkerOptions().position(sydney).icon(icon).title("observer viewmodel").visible(true)
+            mMap?.addMarker(markerOptions)?.showInfoWindow()
+            mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,18F))
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,16 +65,13 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+
+
+
     override fun onMapReady(googleMap: GoogleMap?) {
         mMap = googleMap
         userDetailsViewModel.setNewLocation()
 
-        val sydney = LatLng(1.4173, 103.8330)
-        val icon = BitmapDescriptorFactory.fromResource(R.drawable.marker)
-        var markerOptions = MarkerOptions().position(sydney).icon(icon).title("marker viisble").visible(true)
-
-        mMap?.addMarker(markerOptions)?.showInfoWindow()
-        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,18F))
     }
 
 
