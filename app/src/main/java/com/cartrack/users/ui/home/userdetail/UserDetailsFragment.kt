@@ -59,7 +59,9 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
 
         val sydney = LatLng(1.4173, 103.8330)
         val icon = BitmapDescriptorFactory.fromResource(R.drawable.marker)
-        mMap?.addMarker(MarkerOptions().position(sydney).title("Marker in frag"))?.setIcon(icon)
+        var markerOptions = MarkerOptions().position(sydney).icon(icon).title("marker viisble").visible(true)
+
+        mMap?.addMarker(markerOptions)?.showInfoWindow()
         mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,18F))
     }
 
