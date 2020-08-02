@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.model.UserListResponseItem
 import com.cartrack.users.databinding.UserItemBinding
 
@@ -19,7 +20,7 @@ import com.cartrack.users.databinding.UserItemBinding
 class UserListAdapter(private val listener: UserItemListner) : RecyclerView.Adapter<UserViewHolder>() {
 
     interface UserItemListner {
-        fun onClickedUser(userId: Int)
+        fun onClickedUser(user:UserListResponseItem)
     }
 
 
@@ -68,7 +69,7 @@ class UserViewHolder(private val itemBinding: UserItemBinding, private val liste
 
 
     override fun onClick(v: View?) {
-        listener.onClickedUser(user.id)
+        listener.onClickedUser(user)
     }
 
 

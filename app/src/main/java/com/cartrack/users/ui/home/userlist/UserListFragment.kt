@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cartrack.users.R
+import com.cartrack.users.data.model.UserListResponseItem
 import com.cartrack.users.data.repository.UserRepository
 import com.cartrack.users.databinding.FragmentUserListBinding
 
@@ -61,10 +63,10 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
         })
     }
 
-    override fun onClickedUser(characterId: Int) {
+    override fun onClickedUser(user: UserListResponseItem) {
         findNavController().navigate(
-            R.id.action_userFragment_to_userDetailFragment
-            //bundleOf("id" to characterId)
+            R.id.action_userFragment_to_userDetailFragment,
+            bundleOf("user" to user)
         )
     }
 
