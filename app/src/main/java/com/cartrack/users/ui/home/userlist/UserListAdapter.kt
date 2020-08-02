@@ -1,14 +1,20 @@
 package com.cartrack.users.ui.home.userlist
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.cartrack.users.R
 import com.cartrack.users.data.model.UserListResponseItem
 import com.cartrack.users.databinding.UserItemBinding
+
 
 class UserListAdapter(private val listener: UserItemListner) : RecyclerView.Adapter<UserViewHolder>() {
 
@@ -56,7 +62,8 @@ class UserViewHolder(private val itemBinding: UserItemBinding, private val liste
     fun bind(item: UserListResponseItem) {
         this.user = item
         itemBinding.adapterdata = item
-        //itemBinding.root.setBackgroundColor(if (position%2 == 0) itemBinding.root.resources.getColor(R.color.colorWhite) else itemBinding.root.resources.getColor(R.color.colorGray))
+        itemBinding.imgphone.setOnClickListener({
+        })
     }
 
 
