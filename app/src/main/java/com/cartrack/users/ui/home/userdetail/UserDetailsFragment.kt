@@ -1,17 +1,21 @@
 package com.cartrack.users.ui.home.userdetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-
 import com.cartrack.users.R
 import com.cartrack.users.data.model.UserListResponseItem
 import com.cartrack.users.databinding.FragmentUserDetailsBinding
-import com.cartrack.users.ui.home.userlist.UserListViewModel
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,10 +23,11 @@ import com.cartrack.users.ui.home.userlist.UserListViewModel
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class UserDetailsFragment : Fragment() {
+class UserDetailsFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding: FragmentUserDetailsBinding
     private  val userDetailsViewModel: UserDetailsViewModel by viewModels()
+    private var mMap: GoogleMap? = null
 
 
     override fun onCreateView(
@@ -32,6 +37,11 @@ class UserDetailsFragment : Fragment() {
 
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
+        val mapView = binding.mapView
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this)
+        mapView.onResume();
+
         return binding.root
 
     }
@@ -43,6 +53,15 @@ class UserDetailsFragment : Fragment() {
         }
     }
 
+    override fun onMapReady(googleMap: GoogleMap?) {
+        mMap = googleMap
+        userDetailsViewModel.setNewLocation()
+
+        val sydney = LatLng(1.4173, 103.8330)
+        val icon = BitmapDescriptorFactory.fromResource(R.drawable.marker)
+        mMap?.addMarker(MarkerOptions().position(sydney).title("Marker in frag"))?.setIcon(icon)
+        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,18F))
+    }
 
 
 }
