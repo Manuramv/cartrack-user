@@ -9,13 +9,17 @@
         <variable
             name="adapterdata"
             type="com.cartrack.users.data.model.UserListResponseItem" />
-
-
+        <import type="com.cartrack.users.ui.home.userlist.ImageBinderKt"/>
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
+
+    android:background="@drawable/rv_rectangle"
+    android:layout_margin="8dp"
     android:padding="10dp">
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
@@ -24,6 +28,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        app:imageUrl="@{adapterdata.name}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,13 +46,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/species_and_status"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:text="@{adapterdata.email}"
+        android:autoLink="email"
+        android:textColorLink="@color/colorEmailLink"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="@{adapterdata.phone}"
+        android:autoLink="phone"
+        android:textColorLink="@color/colorPhoneLink"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

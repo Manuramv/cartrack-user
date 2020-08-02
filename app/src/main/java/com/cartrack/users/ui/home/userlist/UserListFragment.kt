@@ -1,21 +1,19 @@
 package com.cartrack.users.ui.home.userlist
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cartrack.users.R
-
 import com.cartrack.users.data.repository.UserRepository
 import com.cartrack.users.databinding.FragmentUserListBinding
-import com.cartrack.users.utils.Resource
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [UserListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class UserListFragment : Fragment(),UserListAdapter.UserItemListner {
+class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
     private lateinit var binding: FragmentUserListBinding
     private lateinit var userListViewModel: UserListViewModel
     private lateinit var adapter: UserListAdapter
@@ -52,8 +50,9 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner {
 
     private fun setupRecyclerView() {
         adapter = UserListAdapter(this)
-        binding.charactersRv.layoutManager = LinearLayoutManager(requireContext())
-        binding.charactersRv.adapter = adapter
+        binding.rvUsers.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvUsers.adapter = adapter
+        binding.rvUsers.setItemAnimator(DefaultItemAnimator())
     }
 
     private fun setupObservers() {
@@ -68,6 +67,7 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner {
             //bundleOf("id" to characterId)
         )
     }
+
 
 
 }
