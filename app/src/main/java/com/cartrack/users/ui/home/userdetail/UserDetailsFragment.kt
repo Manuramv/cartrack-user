@@ -52,7 +52,7 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
         userDetailsViewModel.mMapLatLng.observe(viewLifecycleOwner, Observer {
             val sydney = LatLng(1.4173, 103.8330)
             val icon = BitmapDescriptorFactory.fromResource(R.drawable.marker)
-            var markerOptions = MarkerOptions().position(sydney).icon(icon).title("observer viewmodel").visible(true)
+            var markerOptions = MarkerOptions().position(sydney).icon(icon).title(it.userName+"is here").visible(true)
             mMap?.addMarker(markerOptions)?.showInfoWindow()
             mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,18F))
         })

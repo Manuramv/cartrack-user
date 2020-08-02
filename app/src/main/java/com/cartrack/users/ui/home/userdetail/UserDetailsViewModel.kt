@@ -15,8 +15,8 @@ class UserDetailsViewModel: ViewModel() {
 
     fun start(it: UserListResponseItem) {
         Log.d(TAG,"values::"+it.name)
-        mapLocation = LatLang(it.address.geo.lat, it.address.geo.lng)
-        mMapLatLng.value = LatLang(it.address.geo.lat, it.address.geo.lng)
+        mapLocation = LatLang(it.address.geo.lat, it.address.geo.lng,it.name.split(" ").get(0))
+        mMapLatLng.value = mapLocation
     }
 
     fun setNewLocation() {
