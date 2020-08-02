@@ -50,14 +50,9 @@ class UserListAdapter(private val listener: UserItemListner) : RecyclerView.Adap
     }
 }
 
-class UserViewHolder(private val itemBinding: UserItemBinding, private val listener: UserListAdapter.UserItemListner) : RecyclerView.ViewHolder(itemBinding.root),
-    View.OnClickListener {
+class UserViewHolder(private val itemBinding: UserItemBinding, private val listener: UserListAdapter.UserItemListner) : RecyclerView.ViewHolder(itemBinding.root) {
 
     private lateinit var user: UserListResponseItem
-
-    init {
-        itemBinding.root.setOnClickListener(this)
-    }
 
     @SuppressLint("SetTextI18n")
     fun bind(item: UserListResponseItem) {
@@ -65,12 +60,15 @@ class UserViewHolder(private val itemBinding: UserItemBinding, private val liste
         itemBinding.adapterdata = item
         itemBinding.imgphone.setOnClickListener({
         })
+        itemBinding.root.setOnClickListener({
+            listener.onClickedUser(user)
+        })
     }
 
 
-    override fun onClick(v: View?) {
-        listener.onClickedUser(user)
-    }
+    /*override fun onClick(v: View?) {
+
+    }*/
 
 
 

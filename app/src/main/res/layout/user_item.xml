@@ -14,8 +14,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:focusableInTouchMode="true"
-
     android:background="@drawable/rv_rectangle"
     android:layout_margin="8dp"
     android:padding="10dp">

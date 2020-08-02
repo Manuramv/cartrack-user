@@ -7,16 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+
 import com.cartrack.users.R
 import com.cartrack.users.data.model.UserListResponseItem
 import com.cartrack.users.databinding.FragmentUserDetailsBinding
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +41,12 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
 
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
+        try {
+            MapsInitializer.initialize(this.activity)
+        } catch (e: GooglePlayServicesNotAvailableException) {
+            e.printStackTrace()
+        }
+
         val mapView = binding.mapView
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this)
@@ -60,6 +69,12 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        try {
+            MapsInitializer.initialize(this.activity)
+        } catch (e: GooglePlayServicesNotAvailableException) {
+            e.printStackTrace()
+        }
+
         arguments?.getParcelable<UserListResponseItem>("user")?.let {
             userDetailsViewModel.start(it)
         }
