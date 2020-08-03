@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
@@ -69,6 +70,7 @@
         android:text="@{viewModel.userDetail.phone}"
         android:autoLink="phone"
         android:textSize="0sp"
+        android:padding="@dimen/small_padding"
         android:background="@android:drawable/stat_sys_phone_call"
         android:backgroundTint="@color/colorPhoneLink"
         android:layout_marginTop="@dimen/medium_margin"
@@ -88,6 +90,7 @@
         android:text="@{viewModel.userDetail.email}"
         android:autoLink="email"
         android:textSize="0sp"
+        android:padding="@dimen/small_padding"
         android:layout_marginTop="@dimen/medium_margin"
         android:layout_marginRight="@dimen/small_margin"
         app:layout_constraintEnd_toStartOf="@+id/button3"
@@ -103,12 +106,64 @@
         android:text="@{viewModel.userDetail.website}"
         android:autoLink="web"
         android:textSize="0sp"
+        android:padding="@dimen/small_padding"
         android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintStart_toEndOf="@id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtEmail"
+        app:layout_constraintTop_toBottomOf="@id/txtEmail" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineaddressHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75"/>
+
+    <View
+        android:id="@+id/viewSeperator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:layout_constraintTop_toBottomOf="@id/guidelineaddressHorizontal"
+        android:background="@color/colorBlack" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtCompanyHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/company_label"
+        android:textSize="@dimen/txt_header"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/small_margin_between_views"
+        app:layout_constraintTop_toBottomOf="@+id/viewSeperator"
+        app:layout_constraintStart_toStartOf="parent"
         />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cmpNamelabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin_between_views"
+        android:text="@string/company_name_label"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCompanyHeader" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cmpName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.userDetail.company.name}"
+        android:layout_marginTop="@dimen/small_margin_between_views"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/txtCompanyHeader"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

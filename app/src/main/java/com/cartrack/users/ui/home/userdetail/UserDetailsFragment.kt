@@ -75,7 +75,7 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
 
     private fun setupObserver() {
         userDetailsViewModel.mMapLatLng.observe(viewLifecycleOwner, Observer {
-            /*try {
+           /* try {
                 MapsInitializer.initialize(this.activity)
                 val sydney = LatLng(1.4173, 103.8330)
                 val icon = BitmapDescriptorFactory.fromResource(R.drawable.marker)
