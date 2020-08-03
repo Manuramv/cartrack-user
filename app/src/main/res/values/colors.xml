@@ -7,5 +7,6 @@
     <color name="colorPhoneLink">#FF0000</color>
     <color name="colorGray">#d3d3d3</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
 
 </resources>
