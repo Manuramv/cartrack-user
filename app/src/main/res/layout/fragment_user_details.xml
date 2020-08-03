@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5"/>
+        app:layout_constraintGuide_percent="0.45"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txtUserName"
@@ -133,6 +133,8 @@
         android:text="@string/company_label"
         android:textSize="@dimen/txt_header"
         android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="@dimen/small_margin_between_views"
         app:layout_constraintTop_toBottomOf="@+id/viewSeperator"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,6 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin_between_views"
         android:text="@string/company_name_label"
+        android:layout_marginLeft="@dimen/medium_margin"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCompanyHeader" />
@@ -164,6 +167,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@+id/txtCompanyHeader"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cmpcatchphraselabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin_between_views"
+        android:text="@string/company_phrase_label"
+        android:layout_marginLeft="@dimen/medium_margin"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cmpName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cmpcatchphrase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.userDetail.company.catchPhrase}"
+        android:layout_marginTop="@dimen/small_margin_between_views"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/cmpName"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cmpBusinesslabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin_between_views"
+        android:text="@string/company_phrase_label"
+        android:layout_marginLeft="@dimen/medium_margin"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cmpcatchphraselabel" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cmpBusiness"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.userDetail.company.bs}"
+        android:layout_marginTop="@dimen/small_margin_between_views"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/cmpcatchphraselabel"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

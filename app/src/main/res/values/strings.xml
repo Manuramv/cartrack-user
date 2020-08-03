@@ -8,4 +8,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="company_name_label">Name:</string>
+    <string name="company_phrase_label">Catch Phrase</string>
 </resources>
