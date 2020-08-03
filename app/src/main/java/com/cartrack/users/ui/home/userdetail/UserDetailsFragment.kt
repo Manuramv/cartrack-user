@@ -13,10 +13,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigator
+import androidx.navigation.fragment.findNavController
 
 import com.cartrack.users.R
 import com.cartrack.users.data.model.UserListResponseItem
@@ -37,7 +40,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
+@Navigator.Name("UserDetailsFragment")
 class UserDetailsFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding: FragmentUserDetailsBinding
@@ -51,11 +54,9 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
     ): View? {
 
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
         userDetailsViewModel = ViewModelProvider(this).get(UserDetailsViewModel::class.java)
         binding.viewModel = userDetailsViewModel
-        /*ViewModelProvider(this, ViewModelFactory(UserRepository(), UserListViewModel::class.java ))
-            .get(UserListViewModel::class.java)*/
+        binding.lifecycleOwner = this
 
         MapsInitializer.initialize(this.activity)
 
@@ -94,6 +95,20 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
             sendEmail(it)
         })
 
+        userDetailsViewModel.website?.observe(viewLifecycleOwner, Observer {
+            openWebsite(it)
+
+        })
+
+
+    }
+
+    private fun openWebsite(webAddress: String?) {
+        Log.d("usrdetailsfrag","calling openwebsite")
+        findNavController().navigate(
+            R.id.action_userDetailFragment_to_webViewFragment,
+            bundleOf("website" to webAddress)
+        )
     }
 
     //sendEmail

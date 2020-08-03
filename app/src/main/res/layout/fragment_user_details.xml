@@ -62,38 +62,47 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
 
-    <ImageButton
+    <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="50dp"
-        android:onClick="@{() -> viewModel.onclickPhoneCall(viewModel.userDetail.phone)}"
-        android:src="@android:drawable/stat_sys_phone_call"
-        android:tint="@color/colorPhoneLink"
+        android:text="@{viewModel.userDetail.phone}"
+        android:autoLink="phone"
+        android:textSize="0sp"
+        android:background="@android:drawable/stat_sys_phone_call"
+        android:backgroundTint="@color/colorPhoneLink"
         android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginRight="@dimen/small_margin"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtEmail"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <ImageButton
+    <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_dialog_email"
-        android:tint="@color/colorPhoneLink"
-        android:onClick="@{() -> viewModel.onclickEmail(viewModel.userDetail.email)}"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:background="@android:drawable/ic_dialog_email"
+        android:backgroundTint="@color/colorPhoneLink"
+        android:text="@{viewModel.userDetail.email}"
+        android:autoLink="email"
+        android:textSize="0sp"
         android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginRight="@dimen/small_margin"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toEndOf="@id/button1"
         app:layout_constraintTop_toBottomOf="@id/txtEmail" />
 
-    <ImageButton
+    <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_world_wide_web"
+        android:background="@drawable/ic_world_wide_web"
         android:tint="@color/colorPhoneLink"
+        android:text="@{viewModel.userDetail.website}"
+        android:autoLink="web"
+        android:textSize="0sp"
         android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintStart_toEndOf="@id/button2"
         app:layout_constraintEnd_toEndOf="parent"

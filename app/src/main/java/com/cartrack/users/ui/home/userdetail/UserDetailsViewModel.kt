@@ -2,21 +2,36 @@ package com.cartrack.users.ui.home.userdetail
 
 import android.util.Log
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.cartrack.users.data.model.LatLang
 import com.cartrack.users.data.model.UserListResponseItem
+import com.cartrack.users.utils.Event
 
 
 class UserDetailsViewModel: ViewModel() {
     val TAG = UserDetailsViewModel::class.java.canonicalName
     var mMapLatLng= MutableLiveData<LatLang> ()
     var phoneCall = MutableLiveData<String>()
-    var email = MutableLiveData<String>()
+    var email : MutableLiveData<String>
+    //var website : LiveData<String>?=null
+    var _website = MutableLiveData<String>()
+
+    val website: LiveData<String> = _website
 
     var userDetail= MutableLiveData<UserListResponseItem> ()
     private lateinit var mapLocation : LatLang
+
+    init {
+        email = MutableLiveData<String>()
+       // _website =  MutableLiveData<String>()
+
+
+    }
+
+
 
     fun start(it: UserListResponseItem) {
         Log.d(TAG,"values::"+it.name)
@@ -36,5 +51,10 @@ class UserDetailsViewModel: ViewModel() {
     }
     fun onclickEmail(userEmail: String){
         email.value = userEmail
+    }
+    fun onclickWeb(webAddress: String){
+
+        _website.value = webAddress
+
     }
 }
