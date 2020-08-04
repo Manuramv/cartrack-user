@@ -1,11 +1,19 @@
 package com.cartrack.users.ui.login
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.*
 import com.cartrack.users.data.entities.User
+import com.cartrack.users.data.model.CountryList
 import com.cartrack.users.data.repository.LoginRepository
+import com.cartrack.users.ui.splash.UserAccountDetails
+import com.cartrack.users.utils.JsonParser
 import com.cartrack.users.utils.Resource
 import com.cartrack.users.utils.ValidationUtils.isEmailValid
 import com.cartrack.users.utils.ValidationUtils.isPwdValid
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() {
     var emailAddress= MutableLiveData<String>()
@@ -43,5 +51,21 @@ class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() 
             value = emailValid && pwdValid
         }
         value = emailValid && pwdValid
+    }
+
+
+
+    //get countrylist
+    //Read the json from asset folder and update to database
+    fun readCountryJson(context: Context){
+        viewModelScope.launch {
+            val jsonFileString = JsonParser.getJsonDataFromAsset(context, "CountryList.json")
+            val gson = Gson()
+            val listCountryType = object : TypeToken<CountryList>() {}.type
+            var countrylist:CountryList = gson.fromJson(jsonFileString, listCountryType)
+            countrylist.forEachIndexed {
+                    idx, country -> Log.i("data", "> Item $idx:\n$country")
+            }
+        }
     }
 }

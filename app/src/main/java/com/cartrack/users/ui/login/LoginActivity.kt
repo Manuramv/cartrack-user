@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this
         binding.viewModel = loginViewModel
+        loginViewModel.readCountryJson(this)
 
 
         loginViewModel.user?.observe(this, Observer {
