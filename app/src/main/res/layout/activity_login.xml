@@ -19,6 +19,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnrCountry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:spinnerMode="dropdown"
+        android:paddingStart="4dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/etUserName"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:entries="@{viewModel.countryItem}"
+        android:selectedItemPosition="@={viewModel.spinnerSelectedItemPosition}" />
+
+
 
 
     <com.google.android.material.textfield.TextInputLayout

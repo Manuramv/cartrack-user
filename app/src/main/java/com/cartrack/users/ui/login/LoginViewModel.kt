@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.model.CountryList
+import com.cartrack.users.data.model.CountryListItem
 import com.cartrack.users.data.repository.LoginRepository
 import com.cartrack.users.ui.splash.UserAccountDetails
 import com.cartrack.users.utils.JsonParser
@@ -18,7 +19,9 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() {
     var emailAddress= MutableLiveData<String>()
     var password = MutableLiveData<String>()
-    var enableLoginButton = MutableLiveData<Boolean>()
+    var countryItem  = MutableLiveData<List<CountryListItem>>()
+    var countryList  = arrayListOf<CountryListItem>()
+    var spinnerSelectedItemPosition  = MutableLiveData<Int>()
 
     private val _id = MutableLiveData<Int>()
    // private val _user = loginRepository.getUser("user1", "password@18")
@@ -65,7 +68,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() 
             var countrylist:CountryList = gson.fromJson(jsonFileString, listCountryType)
             countrylist.forEachIndexed {
                     idx, country -> Log.i("data", "> Item $idx:\n$country")
+                countryList.add(country)
             }
+            countryItem.value = countryList
         }
     }
 }
