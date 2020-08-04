@@ -17,8 +17,8 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 | user1@cartrack.com  | Cartrack@123  |
 | user2@cartrack.com  | Cartrack@222  |
 | user3@cartrack.com  | Cartrack@333  |
-| manu@cartrack.com   | Cartrack@123  |
 | karen@cartrack.com  | Cartrack@123  |
+| manu@cartrack.com   | Cartrack@123  |
 
 
 - We used a Country list json `CountryList.json` to show the list of countries on spinner and country images we are fetching from this (https://www.countryflags.io/sg/flat/64.png) api by passing the country code. Check the `ImageBinder`
