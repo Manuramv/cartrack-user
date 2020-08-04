@@ -29,6 +29,7 @@ class CountrySpinnerAdapter(context: Context, resource: Int, private val values:
             it.root.tag = it
         }
         binding.adapterdata = values[position]
+        binding.txtCountryName.text = values[position].name
         return binding.root
     }
     override fun getDropDownView(position: Int, recycledView: View?, parent: ViewGroup): View {
@@ -41,6 +42,7 @@ class CountrySpinnerAdapter(context: Context, resource: Int, private val values:
         }
 
         binding.adapterdata = values[position]
+        binding.txtCountryName.text = values[position].name
         return binding.root
     }
 }

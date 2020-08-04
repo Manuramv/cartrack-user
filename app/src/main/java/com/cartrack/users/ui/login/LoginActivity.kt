@@ -59,5 +59,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateToHomeScreen(){
         startActivity(Intent(this, HomeActivity::class.java))
+        finish()
     }
 }
