@@ -7,6 +7,11 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 - When selecting any user it will open the customer user details screen, there you can see the detailed info of the customer.
 - We have given a 'country picker' in the log-in screen to give the best and customized experience to the user.
 
+![Car Track user](https://user-images.githubusercontent.com/31012185/89326480-f0c72480-d6bc-11ea-9edf-9bd21886faca.gif)
+*Fig. 1: Demonstrating App*
+
+![Car Track user](https://user-images.githubusercontent.com/31012185/89326574-148a6a80-d6bd-11ea-9700-abe97df25834.gif)
+*Fig. 2: Demonstrating App*
 
 
 #### Note:
