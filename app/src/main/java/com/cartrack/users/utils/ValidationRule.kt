@@ -11,7 +11,7 @@ object ValidationRule {
     var PASSWORD_RULE: StringRule = object : StringRule {
         var isValidFiled = false
         override fun validate(s: String?): Boolean {
-            val PWD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*+=?-]).{6,15}$";
+            val PWD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*+=?-]).{6,15}$";
             val patt: Pattern = Pattern.compile(PWD_PATTERN)
             val matcher: Matcher = patt.matcher(s)
             return matcher.matches()

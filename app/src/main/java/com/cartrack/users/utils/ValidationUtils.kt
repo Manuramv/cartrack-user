@@ -10,7 +10,7 @@ object ValidationUtils {
     }
 
     fun isPwdValid(password: String): Boolean{
-        val PWD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*+=?-]).{6,15}$";
+        val PWD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*+=?-]).{6,15}$";
         val patt: Pattern = Pattern.compile(PWD_PATTERN)
         val matcher: Matcher = patt.matcher(password)
         return matcher.matches()
