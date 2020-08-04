@@ -66,6 +66,7 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
         })
     }
 
+    //callback listner from adapter- once clicked on any user pass the user details through bundles to detail screen
     override fun onClickedUser(user: UserListResponseItem) {
         findNavController().navigate(
             R.id.action_userFragment_to_userDetailFragment,
