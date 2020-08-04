@@ -1,5 +1,6 @@
 package com.cartrack.users.ui.home.userlist
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.cartrack.users.R
 import com.cartrack.users.data.model.UserListResponseItem
 import com.cartrack.users.data.repository.UserRepository
 import com.cartrack.users.databinding.FragmentUserListBinding
+import com.cartrack.users.utils.AlertUtils
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,6 +65,9 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
     private fun setupObservers() {
         userListViewModel.usersData.observe(viewLifecycleOwner, Observer {
             adapter.setItems(ArrayList(it))
+        })
+        userListViewModel.errorFetchingData.observe(viewLifecycleOwner, Observer {
+            AlertUtils.showAlert(this as Activity,getString(R.string.api_error), it?: getString(R.string.something_went_wrong))
         })
     }
 

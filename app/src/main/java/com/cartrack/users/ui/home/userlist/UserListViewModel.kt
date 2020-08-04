@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class UserListViewModel(private val userRepository: UserRepository) : ViewModel() {
     var usersData= MutableLiveData<UserListResponse>()
+    var errorFetchingData= MutableLiveData<String>()
 
     fun getUsersList(){
       //  remoteDataSource.getUsersList()
@@ -26,6 +27,7 @@ class UserListViewModel(private val userRepository: UserRepository) : ViewModel(
                          usersData.value = it.data
                     }
                     Resource.Status.ERROR ->{
+                        errorFetchingData.value = it.message
                         Log.d("UserListViewModel","response== api error"+it)
                     }
                     else -> {
