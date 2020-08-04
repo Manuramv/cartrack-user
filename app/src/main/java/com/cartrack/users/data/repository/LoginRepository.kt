@@ -25,7 +25,7 @@ class LoginRepository (application: Application) {
         mLoginDao = db.loginDao()
     }
 
-    fun insertNewUser(user: User) = insertTask(user)
+    fun insertNewUser(user: List<User>) = insertTask(user)
 
 
 
@@ -73,11 +73,11 @@ class LoginRepository (application: Application) {
     }
 
 
-    fun  insertTask(user: User): MutableLiveData<Boolean> {
+    fun  insertTask(user: List<User>): MutableLiveData<Boolean> {
         val liveData = MutableLiveData<Boolean>()
         var insertSuccess = false;
         GlobalScope.launch(Dispatchers.IO) {
-            val it = mLoginDao?.insert(user)
+            val it = mLoginDao?.insertAll(user)
             Log.d("tag","inserted row=="+it)
             if(it!=null){
                 Log.d("tag","inserted row== true=="+it)

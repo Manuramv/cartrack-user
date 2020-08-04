@@ -23,49 +23,22 @@ class SplashScreenActivity : AppCompatActivity() {
         splashViewModel = ViewModelProvider(this, ViewModelFactory(LoginRepositoryFactory.createLoginRepository(application),SplashViewModel::class.java ))
             .get(SplashViewModel::class.java)
 
-        splashViewModel.user.observe(this, Observer {
-            when(it.status){
-                Resource.Status.SUCCESS ->{
-                    Log.d(TAG,"db query success::"+it.data)
-                }
-
-                Resource.Status.ERROR ->{
-                    Log.d(TAG,"db query error::"+it.message)
-                }
-                Resource.Status.LOADING ->{
-                    Log.d(TAG,"db query Loading::"+it.message)
-                }
-
-            }
-        })
-
-        splashViewModel.uallUsers.observe(this, Observer {
-            when(it.status){
-                Resource.Status.SUCCESS ->{
-                    Log.d(TAG,"db query uallUsers success::"+it.data)
-                }
-
-                Resource.Status.ERROR ->{
-                    Log.d(TAG,"db query uallUsers error::"+it.message)
-                }
-                Resource.Status.LOADING ->{
-                    Log.d(TAG,"db query uallUsers Loading::"+it.message)
-                }
-
-            }
-        })
+        //read the json from asset folder and insert users to database
+        splashViewModel.readUserJsonandInsertToDb(this)
+        //setup the observer
+        setUpObserver()
 
 
-        splashViewModel._insertObserver?.observe(this, Observer {
+    }
+
+    //observe for the view model changes
+    private fun setUpObserver() {
+        splashViewModel.insertObserver?.observe(this, Observer {
             when(it){
                 true -> navigateToLoginScreen()
                 false -> "show error"
             }
-
-
         })
-
-
     }
 
     private fun navigateToLoginScreen(){

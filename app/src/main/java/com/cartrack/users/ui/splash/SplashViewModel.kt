@@ -1,44 +1,35 @@
 package com.cartrack.users.ui.splash
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import com.cartrack.users.data.entities.User
 import com.cartrack.users.data.repository.LoginRepository
+import com.cartrack.users.utils.JsonParser.getJsonDataFromAsset
 import com.cartrack.users.utils.Resource
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class SplashViewModel(loginRepository: LoginRepository) : ViewModel() {
-    private val TAG = SplashViewModel::class.java.canonicalName
-    private val _userName = MutableLiveData<String>()
-    private val _pwd = MutableLiveData<String>()
-     lateinit var _insertObserver :LiveData<Boolean>
+class SplashViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+    private lateinit var _insertObserver :LiveData<Boolean>
+    var insertObserver = MutableLiveData<Boolean>()
+    val userList =  arrayListOf<User>()
 
-    fun performLogin(userName: String, pwd:String){
-        _userName.value = userName
-        _pwd.value = pwd
+
+    //Read the json from asset folder and update to database
+    fun readUserJsonandInsertToDb(context:Context){
+        viewModelScope.launch {
+            val jsonFileString = getJsonDataFromAsset(context, "userlist.json")
+            val gson = Gson()
+            val listPersonType = object : TypeToken<UserAccountDetails>() {}.type
+            var persons: UserAccountDetails = gson.fromJson(jsonFileString, listPersonType)
+            persons.user.forEachIndexed {
+                    idx, person -> userList.add(person)
+            }
+            _insertObserver = loginRepository?.insertNewUser(userList)!!
+            insertObserver.value = _insertObserver.value
+        }
     }
-    init {
-        Log.d(TAG,"in viewmodel init::"+loginRepository)
-        loginRepository.testMethod()
-        val user = User(1,"manu@gmail.com","password@18")
-        val user2 = User(18,"user2","password@123")
-        val user3 = User(18,"manu","sreemanu")
-        loginRepository?.insertNewUser(user)!!
-        loginRepository?.insertNewUser(user3)!!
-        _insertObserver = loginRepository?.insertNewUser(user2)!!
-
-    }
-
-
-
-
-   // private val _user = loginRepository.getUser("_userName.value!!","_pwd.value!!")
-    private val _user = loginRepository.getUser("manuram v","sreemanu")
-
-    val user: LiveData<Resource<User>> = _user!!
-
-    private val _allUsers = loginRepository.getAllUsers()
-    val uallUsers: LiveData<Resource<List<User>>> = _allUsers!!
-
 }

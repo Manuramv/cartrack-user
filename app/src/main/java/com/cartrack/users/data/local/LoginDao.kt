@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.core.Completable
 interface LoginDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(user : User): Long
+    fun insertAll(user : List<User>): List<Long>
 
     @Query("SELECT * FROM USERTABLE WHERE userName =:userName and password= :password")
     fun getUser(userName: String, password:String ) :LiveData<User>
