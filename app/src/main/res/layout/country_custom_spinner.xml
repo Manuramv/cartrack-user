@@ -9,7 +9,7 @@
         <variable
             name="adapterdata"
             type="com.cartrack.users.data.model.CountryListItem" />
-        <!--import type="com.viki.currency.adapters.ImageBinderKt"/>-->
+        <import type="com.cartrack.users.ui.home.userlist.ImageBinderKt"/>
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="5dp"
-            app:imageUrl="@{adapterdata.name}"
+            app:countryImageUrl="@{adapterdata.code}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,13 +29,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView"
-            android:layout_width="40dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             app:text="@{adapterdata.name}"
             android:textSize="18dp"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/product_attribute_spinner_row_item_image_view"
+            app:layout_constraintLeft_toRightOf="@+id/product_attribute_spinner_row_item_image_view"
+
             app:layout_constraintTop_toTopOf="parent" />
 
 

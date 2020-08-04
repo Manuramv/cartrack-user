@@ -9,4 +9,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="company_name_label">Name:</string>
     <string name="company_phrase_label">Catch Phrase</string>
+    <string name="select_country_operation">Please Select your country in order to serve you better and get the customized experience.</string>
 </resources>

@@ -19,19 +19,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spnrCountry"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/small_margin"
-        android:spinnerMode="dropdown"
-        android:paddingStart="4dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/etUserName"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:entries="@{viewModel.countryItem}"
-        android:selectedItemPosition="@={viewModel.spinnerSelectedItemPosition}" />
 
 
 
@@ -97,7 +84,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6"/>
+        app:layout_constraintGuide_percent="0.85"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/choseCountrylabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_country_operation"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:textColor="@color/colorBlue"
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnrCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:spinnerMode="dropdown"
+        android:paddingStart="4dp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/choseCountrylabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:entries="@{viewModel.countryItem}" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

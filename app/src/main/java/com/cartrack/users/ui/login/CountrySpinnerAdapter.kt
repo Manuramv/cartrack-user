@@ -11,7 +11,7 @@ import com.cartrack.users.data.model.CountryListItem
 import com.cartrack.users.databinding.CountryCustomSpinnerBinding
 
 
-//adapter to show the currency spinner
+//adapter to show the country spinner
 class CountrySpinnerAdapter(context: Context, resource: Int, private val values: List<CountryListItem>) :
     ArrayAdapter<CountryListItem>(context, resource, values) {
 
