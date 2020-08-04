@@ -35,7 +35,8 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentUserListBinding.inflate(inflater, container, false)
-        userListViewModel = ViewModelProvider(this, ViewModelFactory(UserRepository(), UserListViewModel::class.java ))
+        //call the custome viewmodel factory and get the repo instance in viewmodel
+        userListViewModel = ViewModelProvider(this, UserListViewModelFactory(UserRepository(), UserListViewModel::class.java ))
             .get(UserListViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = userListViewModel
@@ -50,6 +51,7 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
     }
 
 
+    //set the user list recyclerview
     private fun setupRecyclerView() {
         adapter = UserListAdapter(this)
         binding.rvUsers.layoutManager = LinearLayoutManager(requireContext())
@@ -57,6 +59,7 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
         binding.rvUsers.setItemAnimator(DefaultItemAnimator())
     }
 
+    //Observe for the userdata - once we get the user data from API set it to adapter
     private fun setupObservers() {
         userListViewModel.usersData.observe(viewLifecycleOwner, Observer {
             adapter.setItems(ArrayList(it))

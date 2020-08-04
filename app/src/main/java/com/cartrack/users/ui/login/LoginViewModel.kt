@@ -34,6 +34,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() 
        _id.value = _id.value?.plus(1);
    }
 
+    //using the mediatorlivedata to check both email and passowrd filed before enabling the login button.
+    //this section we can improve.
     val valid = MediatorLiveData<Boolean>().apply {
         var emailValid = false
         var pwdValid = false
