@@ -14,6 +14,8 @@ import com.cartrack.users.ui.ViewModelFactory
 import com.cartrack.users.ui.login.LoginActivity
 import com.cartrack.users.utils.AlertUtils
 import com.cartrack.users.utils.Resource
+import java.util.*
+import kotlin.concurrent.schedule
 
 class SplashScreenActivity : AppCompatActivity() {
     val TAG = SplashScreenActivity::class.java.canonicalName
@@ -38,7 +40,7 @@ class SplashScreenActivity : AppCompatActivity() {
         splashViewModel.insertObserver?.observe(this, Observer {
             Log.d("tag","insert splas::"+it)
             when(it){
-                true -> navigateToLoginScreen()
+                true -> delayAndNavigateToLoginScreen()
                 false -> showError()
             }
         })
@@ -47,6 +49,13 @@ class SplashScreenActivity : AppCompatActivity() {
     //show this error if we are not abel to config the db
     private fun showError(){
         AlertUtils.showAlert(this,getString(R.string.splash_error),getString(R.string.db_init_erro) )
+    }
+
+    //putting 5s delay to show the splashscreen images
+    private fun delayAndNavigateToLoginScreen(){
+        Timer("SettingUp", false).schedule(500) {
+            navigateToLoginScreen()
+        }
     }
 
     private fun navigateToLoginScreen(){

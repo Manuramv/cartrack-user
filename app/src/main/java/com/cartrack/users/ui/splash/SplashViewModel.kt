@@ -11,9 +11,11 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.util.*
+import kotlin.concurrent.schedule
 
 class SplashViewModel(private val loginRepository: LoginRepository) : ViewModel() {
-    lateinit var insertObserver :LiveData<Boolean>
+    var insertObserver :LiveData<Boolean>?=null
     val userList =  arrayListOf<User>()
 
 
@@ -30,4 +32,5 @@ class SplashViewModel(private val loginRepository: LoginRepository) : ViewModel(
             insertObserver = loginRepository?.insertNewUser(userList)!!
         }
     }
+
 }
