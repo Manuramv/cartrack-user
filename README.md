@@ -11,6 +11,7 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 
 #### Note:
 - I've added a userlist json file in Assests folder and reading that on the app launch and inserting to the 'Room' database. If you want to add any users pls add to the `UserList.json`. Currently following users are in the json file and has the access to the app.
+
 | User Name           | Password      |
 | ------------------- | ------------- |
 | user1@cartrack.com  | Cartrack@123  |
