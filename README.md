@@ -13,6 +13,15 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 ![Car Track user](https://user-images.githubusercontent.com/31012185/89326574-148a6a80-d6bd-11ea-9700-abe97df25834.gif)
 *Fig. 2: Demonstrating App*
 
+- Error Cases
+![Car Track user](https://user-images.githubusercontent.com/31012185/89326959-c0cc5100-d6bd-11ea-8e56-8eecc38c9d44.png)
+*Fig. 3: Login Error*
+
+![Car Track user](https://user-images.githubusercontent.com/31012185/89327097-efe2c280-d6bd-11ea-90c4-0d606087d2a3.png)
+*Fig. 4: Netowrk Error*
+
+
+
 
 #### Note:
 - I've added a userlist json file in Assests folder and reading that on the app launch and inserting to the 'Room' database. If you want to add any users pls add to the `UserList.json`. Currently following users are in the json file and has the access to the app.
