@@ -66,3 +66,4 @@ Now, let's check what we can improve in the feature for this app.
 
 - Spinner UI is not perfect now, I dind't pay much attention to improve this now. We can make it better later.
 - Orientation Chanes are working but we can add the scrollview and make it better.
+- We can add the test cases. (Due to the lack of time I dind't add test cases at the moment).
