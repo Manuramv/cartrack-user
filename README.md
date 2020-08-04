@@ -21,9 +21,6 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 *Fig. 4: Netowrk Error*
 
 
-<div class="text-white bg-red mb-2">
-  .text-white on .bg-red
-</div>
 
 #### Note:
 - I've added a userlist json file in Assests folder and reading that on the app launch and inserting to the 'Room' database. If you want to add any users pls add to the `UserList.json`. Currently following users are in the json file and has the access to the app.
@@ -44,6 +41,10 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 - In the Map we customized the `Marker`
 - We added a `Custom Info window adapter` in map to show the details when the user clicking on the marker.
 - We used the Auto link built-in option for email\call\web.
+
+```diff
+- IMPORTANT: Note that our API is not returning the valid lat and lang so MAP in not able to show the proper location. You can check that in the attached images I've given the valid latitude and langitude and shown the working map.
+```
 
 # Built With
   Kotlin
