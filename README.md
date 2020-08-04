@@ -12,13 +12,13 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 #### Note:
 - I've added a userlist json file in Assests folder and reading that on the app launch and inserting to the 'Room' database. If you want to add any users pls add to the `UserList.json`. Currently following users are in the json file and has the access to the app.
 
-          | User Name           | Password      |
-          | ------------------- | ------------- |
-          | user1@cartrack.com  | Cartrack@123  |
-          | user2@cartrack.com  | Cartrack@222  |
-          | user3@cartrack.com  | Cartrack@333  |
-          | karen@cartrack.com  | Cartrack@123  |
-          | manu@cartrack.com   | Cartrack@123  |
+| User Name           | Password      |
+| ------------------- | ------------- |
+| user1@cartrack.com  | Cartrack@123  |
+| user2@cartrack.com  | Cartrack@222  |
+| user3@cartrack.com  | Cartrack@333  |
+| karen@cartrack.com  | Cartrack@123  |
+| manu@cartrack.com   | Cartrack@123  |
 
 
 - We used a Country list json `CountryList.json` to show the list of countries on spinner and country images we are fetching from this (https://www.countryflags.io/sg/flat/64.png) api by passing the country code. Check the `ImageBinder`
