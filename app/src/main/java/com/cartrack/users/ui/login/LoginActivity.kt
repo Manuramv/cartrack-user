@@ -36,25 +36,26 @@ class LoginActivity : AppCompatActivity() {
         binding.viewModel = loginViewModel
         loginViewModel.readCountryJson(this)
 
+        setUpObserver()
 
-        loginViewModel.user?.observe(this, Observer {
-                when(it.status){
-                    Resource.Status.SUCCESS ->{
-                        navigateToHomeScreen()
-                        Log.d(TAG,"Login success::"+it.data)
-                    }
-
-                    Resource.Status.ERROR ->{
-                        Log.d(TAG,"Login error::"+it.message)
-                    }
-                    Resource.Status.LOADING ->{
-                        Log.d(TAG,"Login loading::"+it.message)
-                    }
-
-                }
-        })
     }
 
+    private fun setUpObserver() {
+        loginViewModel.user?.observe(this, Observer {
+            when(it.status){
+                Resource.Status.SUCCESS ->{
+                    navigateToHomeScreen()
+                }
+                Resource.Status.ERROR ->{
+
+                }
+                Resource.Status.LOADING ->{
+
+                }
+
+            }
+        })
+    }
 
 
     private fun navigateToHomeScreen(){

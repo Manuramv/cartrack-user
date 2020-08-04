@@ -73,12 +73,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login_label"
+        android:textColor="@color/colorWhite"
         android:layout_margin="@dimen/medium_margin"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:onClick="@{ () ->  viewModel.performLogin()}"
         android:enabled="@{viewModel.valid}"
+        android:background="@drawable/background_selector"
     />
 
     <androidx.constraintlayout.widget.Guideline
