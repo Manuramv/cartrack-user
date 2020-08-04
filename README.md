@@ -25,8 +25,8 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 
 
 - We used a third party library to show the GIF ont he splash screen and we put a `5s delay` in splashscreen before navigating to home screen.
-- In the Map we customized the 'Marker'
-- We added a Custom Info window adapter in map to show the details when the user clicking on the marker.
+- In the Map we customized the `Marker`
+- We added a `Custom Info window adapter` in map to show the details when the user clicking on the marker.
 - We used the Auto link built-in option for email\call\web.
 
 # Built With
@@ -44,7 +44,7 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 - I've followed the data binding approach to bind the views with classes and view models,so that I can perform the UI actions with less code and directly from viewmodel.We have extensively used data binding in this application wherever it's possible. 
 - I also used the 2 way binding for the Edittexts and Spinners to improve app's efficiency. 
 - My Activity class and Spinner Adapter looks very clean.
-- `Binding Adapters` and `Inverse Binding Adapters` used wherever it's possible, especially in setting the `double' type value to edittext. I'm happy that I got very good understanding about this after the completion of this project. 
+- `Binding Adapters` and `Inverse Binding Adapters` used wherever it's possible, especially on setting the `data and image` at spinner, `validation check` in login page, `Mapinfo Window`.
     
 # Other Important Libraries Used:
 - `Retrofit` - For networking calls
@@ -56,5 +56,11 @@ This Application is speifically designed for the Cartrack users. Once they sign-
     - UI - Views and Viewmodels and Adapters specific to the screen.
     - Utils - Validation utils, Constants and Alert Classes.
     
-# Supported version
+# Min Supported version
 Android 19(4.4)
+
+# Further Improvements:
+Now, let's check what we can improve in the feature for this app.
+
+- Spinner UI is not perfect now, I dind't pay much attention to improve this now. We can make it better later.
+- Orientation Chanes are working but we can add the scrollview and make it better.
