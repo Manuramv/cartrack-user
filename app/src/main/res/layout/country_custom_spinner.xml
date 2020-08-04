@@ -29,13 +29,12 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtCountryName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:textSize="18dp"
-            android:layout_marginLeft="@dimen/very_small_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/product_attribute_spinner_row_item_image_view"
-
             app:layout_constraintTop_toTopOf="parent" />
 
 
