@@ -34,6 +34,7 @@ class SplashScreenActivity : AppCompatActivity() {
     //observe for the view model changes
     private fun setUpObserver() {
         splashViewModel.insertObserver?.observe(this, Observer {
+            Log.d("tag","insert splas::"+it)
             when(it){
                 true -> navigateToLoginScreen()
                 false -> "show error"
@@ -43,5 +44,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun navigateToLoginScreen(){
         startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 }

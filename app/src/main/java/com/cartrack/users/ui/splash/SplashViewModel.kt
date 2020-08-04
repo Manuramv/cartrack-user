@@ -13,8 +13,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class SplashViewModel(private val loginRepository: LoginRepository) : ViewModel() {
-    private lateinit var _insertObserver :LiveData<Boolean>
-    var insertObserver = MutableLiveData<Boolean>()
+    lateinit var insertObserver :LiveData<Boolean>
     val userList =  arrayListOf<User>()
 
 
@@ -28,8 +27,7 @@ class SplashViewModel(private val loginRepository: LoginRepository) : ViewModel(
             persons.user.forEachIndexed {
                     idx, person -> userList.add(person)
             }
-            _insertObserver = loginRepository?.insertNewUser(userList)!!
-            insertObserver.value = _insertObserver.value
+            insertObserver = loginRepository?.insertNewUser(userList)!!
         }
     }
 }

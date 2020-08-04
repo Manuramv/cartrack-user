@@ -77,6 +77,13 @@
         android:enabled="@{viewModel.valid}"
     />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
