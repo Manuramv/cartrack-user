@@ -19,7 +19,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3"/>
 
 
 
@@ -31,8 +36,8 @@
         app:validation='@{ValidationRule.EMAIL_RULE}'
         android:layout_marginLeft="@dimen/medium_margin"
         android:layout_marginRight="@dimen/medium_margin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
@@ -88,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75"/>
+        app:layout_constraintGuide_percent="0.85"/>
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -101,6 +106,7 @@
         android:layout_marginRight="@dimen/medium_margin"
         android:textColor="@color/colorBlue"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
@@ -113,6 +119,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:entries="@{viewModel.countryItem}"
         android:spinnerMode="dropdown"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

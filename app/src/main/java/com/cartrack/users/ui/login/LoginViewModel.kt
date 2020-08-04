@@ -21,7 +21,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() 
     var password = MutableLiveData<String>()
     var countryItem  = MutableLiveData<List<CountryListItem>>()
     var countryList  = arrayListOf<CountryListItem>()
-    var spinnerSelectedItemPosition  = MutableLiveData<Int>()
 
     private val _id = MutableLiveData<Int>()
    // private val _user = loginRepository.getUser("user1", "password@18")
@@ -30,12 +29,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) :ViewModel() 
     }
 
     val user: LiveData<Resource<User>> = _user!!
-
-
-    /* fun performLogin()  {
-         user = loginRepository.getUser("user1", "password@18")
-         user =null
-     }*/
 
    fun performLogin() {
        _id.value = _id.value?.plus(1);

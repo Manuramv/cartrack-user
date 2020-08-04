@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import com.cartrack.users.databinding.ActivityLoginBinding
 import com.cartrack.users.ui.ViewModelFactory
 import com.cartrack.users.ui.home.HomeActivity
 import com.cartrack.users.ui.splash.SplashViewModel
+import com.cartrack.users.utils.AlertUtils
 import com.cartrack.users.utils.Resource
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlin.math.log
@@ -26,8 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityLoginBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_login)
+         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         loginViewModel = ViewModelProvider(this, ViewModelFactory(LoginRepositoryFactory.createLoginRepository(application), SplashViewModel::class.java ))
             .get(LoginViewModel::class.java)
@@ -47,9 +48,10 @@ class LoginActivity : AppCompatActivity() {
                     navigateToHomeScreen()
                 }
                 Resource.Status.ERROR ->{
-
+                   // showLoginError()
                 }
                 Resource.Status.LOADING ->{
+                    showProgressBar()
 
                 }
 
@@ -57,8 +59,22 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
+
+    //show login error
+    private fun showLoginError() {
+        hideProgressBar()
+        AlertUtils.showAlert(this,getString(R.string.login_error),getString(R.string.login_error_msg) )
+    }
+
 
     private fun navigateToHomeScreen(){
+        hideProgressBar()
         startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
