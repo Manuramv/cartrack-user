@@ -47,6 +47,10 @@ class UserDetailsFragment : Fragment(), OnMapReadyCallback {
         binding.viewModel = userDetailsViewModel
         binding.lifecycleOwner = this
 
+        binding.mapView.onCreate(savedInstanceState);
+        binding.mapView.getMapAsync(this)
+        binding.mapView.onResume();
+
         setupObserver()
         return binding.root
     }
