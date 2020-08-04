@@ -34,9 +34,11 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 
 # Architectural Pattern
 - Used MVVM as the code can be easily reused and binding makes UI updates easier to handle. 
+- Used `JetPack` components and followed the best practices to develp this app.
 - This architecture makes the code more modular so maintainability of code in future will be more easy
 - `LiveData` - **LiveData** to update the UI automatically when the data updates. We Used LiveData extensively to communicate between view and viewmodel. Whenever the API call is success or currecny conversion is success it will update the UI automatically according to our design.
 - We are using the Room database for the local storage.
+- `Navigation Graph` for navigate between fragments
 
 
 
