@@ -7,6 +7,19 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 - When selecting any user it will open the customer user details screen, there you can see the detailed info of the customer.
 - We have given a 'country picker' in the log-in screen to give the best and customized experience to the user.
 
+![Car Track user](https://user-images.githubusercontent.com/31012185/89326480-f0c72480-d6bc-11ea-9edf-9bd21886faca.gif)
+*Fig. 1: Demonstrating App*
+
+![Car Track user](https://user-images.githubusercontent.com/31012185/89326574-148a6a80-d6bd-11ea-9700-abe97df25834.gif)
+*Fig. 2: Demonstrating App*
+
+- Error Cases
+![Car Track user](https://user-images.githubusercontent.com/31012185/89327979-4d2b4380-d6bf-11ea-8640-ce512e7ba667.png)
+*Fig. 3: Login Error*
+
+![Car Track user](https://user-images.githubusercontent.com/31012185/89327983-4e5c7080-d6bf-11ea-976c-0e7d024aaced.png)
+*Fig. 4: Netowrk Error*
+
 
 
 #### Note:
@@ -28,6 +41,10 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 - In the Map we customized the `Marker`
 - We added a `Custom Info window adapter` in map to show the details when the user clicking on the marker.
 - We used the Auto link built-in option for email\call\web.
+
+```diff
+- IMPORTANT: Note that our API is not returning the valid lat and lang so MAP in not able to show the proper location. You can check that in the attached images I've given the valid latitude and langitude and shown the working map.
+```
 
 # Built With
   Kotlin
