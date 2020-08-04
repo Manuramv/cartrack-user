@@ -14,4 +14,6 @@
     <string name="login_error_msg">We couldn\'t find you in our database. Pls check your credentials and try again.</string>
     <string name="splash_error">CAR TRACK</string>
     <string name="db_init_erro">Sorry, Something went wrong. We couldn\'t setup the DB. Please relaunch the app.</string>
+    <string name="api_error">Error</string>
+    <string name="something_went_wrong">Somethign went wrong</string>
 </resources>
