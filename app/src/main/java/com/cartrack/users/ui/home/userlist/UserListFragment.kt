@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -67,7 +68,7 @@ class UserListFragment : Fragment(),UserListAdapter.UserItemListner{
             adapter.setItems(ArrayList(it))
         })
         userListViewModel.errorFetchingData.observe(viewLifecycleOwner, Observer {
-            AlertUtils.showAlert(this as Activity,getString(R.string.api_error), it?: getString(R.string.something_went_wrong))
+            AlertUtils.showAlert(activity as AppCompatActivity,getString(R.string.api_error), it?: getString(R.string.something_went_wrong))
         })
     }
 
