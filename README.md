@@ -14,10 +14,10 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 *Fig. 2: Demonstrating App*
 
 - Error Cases
-![Car Track user](https://user-images.githubusercontent.com/31012185/89326959-c0cc5100-d6bd-11ea-8e56-8eecc38c9d44.png width="200" height="400")
+![Car Track user](https://user-images.githubusercontent.com/31012185/89327979-4d2b4380-d6bf-11ea-8640-ce512e7ba667.png)
 *Fig. 3: Login Error*
 
-![Car Track user](https://user-images.githubusercontent.com/31012185/89327097-efe2c280-d6bd-11ea-90c4-0d606087d2a3.png width="200" height="400")
+![Car Track user](https://user-images.githubusercontent.com/31012185/89327983-4e5c7080-d6bf-11ea-976c-0e7d024aaced.png)
 *Fig. 4: Netowrk Error*
 
 
