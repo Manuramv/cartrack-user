@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
@@ -48,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     navigateToHomeScreen()
                 }
                 Resource.Status.ERROR ->{
-                   // showLoginError()
+                   showLoginError()
                 }
                 Resource.Status.LOADING ->{
                     showProgressBar()
@@ -60,10 +61,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showProgressBar() {
+        window?.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         binding.progressBar.visibility = View.VISIBLE
     }
     private fun hideProgressBar() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         binding.progressBar.visibility = View.GONE
+
     }
 
     //show login error
@@ -73,9 +79,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+    //login is success take user to next screen and show the transition animation.
     private fun navigateToHomeScreen(){
         hideProgressBar()
         startActivity(Intent(this, HomeActivity::class.java))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish()
     }
+
+
+
 }
