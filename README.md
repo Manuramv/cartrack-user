@@ -21,7 +21,9 @@ This Application is speifically designed for the Cartrack users. Once they sign-
 *Fig. 4: Netowrk Error*
 
 
-
+<div class="text-white bg-red mb-2">
+  .text-white on .bg-red
+</div>
 
 #### Note:
 - I've added a userlist json file in Assests folder and reading that on the app launch and inserting to the 'Room' database. If you want to add any users pls add to the `UserList.json`. Currently following users are in the json file and has the access to the app.
